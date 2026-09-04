@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — Consulter un médecin</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+    <nav class="nav">
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html"  class="nav-link active">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"    class="nav-link">À Propos de nous</a>
+      <a href="faq.html"        class="nav-link">FAQ</a>
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="page-intro">
+      <span class="page-tag">Besoin d'aide ?</span>
+      <h1 class="page-title">Consulter un médecin</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Quel que soit votre résultat, un avis médical reste indispensable.
+        Autorisez la géolocalisation pour trouver des praticiens près de chez vous :
+        médecins généralistes, gynécologues, centres de radiologie / mammographie et oncologues.
+      </p>
+    </div>
+
+    <div class="card mt-16">
+      <p class="card-title">Localisation</p>
+      <h2 class="card-heading">Trouver des praticiens autour de moi</h2>
+      <p class="card-desc" style="max-width:100%;">
+        Votre position n'est utilisée que pour centrer la carte ci-dessous.
+        Elle n'est ni enregistrée, ni transmise à un serveur.
+      </p>
+
+      <button class="btn-primary" id="locateBtn" style="margin-top:8px;margin-bottom:20px;">
+        <span>Me localiser</span>
+      </button>
+
+      <div class="manual-locate">
+        <p class="manual-locate-sep"><span>ou</span></p>
+        <p class="card-desc" style="max-width:100%;">
+          Vous préférez ne pas partager votre position ? Recherchez directement par ville ou code postal :
+        </p>
+        <div class="manual-locate-row">
+          <input type="text" id="manualLocationInput" placeholder="Ex : Rouen ou 76000" />
+          <button class="btn-secondary" id="manualLocateBtn" type="button">Rechercher</button>
+        </div>
+      </div>
+
+      <div class="filter-row hidden" id="filterRow">
+        <button class="filter-chip active" data-q="médecin">Tous</button>
+        <button class="filter-chip" data-q="médecin généraliste">Généraliste</button>
+        <button class="filter-chip" data-q="gynécologue">Gynécologue</button>
+        <button class="filter-chip" data-q="centre de radiologie mammographie">Radiologie / Mammographie</button>
+        <button class="filter-chip" data-q="oncologue cancérologue">Oncologue</button>
+      </div>
+
+      <div class="map-state map-idle" id="mapIdle">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4C15.2 4 8 11.2 8 20c0 11 16 24 16 24s16-13 16-24c0-8.8-7.2-16-16-16z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="24" cy="20" r="5" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <p>Activez la géolocalisation pour afficher les praticiens proches de chez vous.</p>
+      </div>
+
+      <div class="map-state map-error hidden" id="mapError">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:var(--danger)">
+          <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M24 16v10M24 30v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p style="font-weight:500">Localisation indisponible</p>
+        <p style="font-size:0.85rem;color:var(--text-muted);text-align:center;line-height:1.5">
+          Vérifiez que la géolocalisation est autorisée pour ce site
+          dans les réglages de votre navigateur, puis réessayez —
+          ou utilisez la recherche par ville / code postal ci-dessus.
+        </p>
+      </div>
+
+      <div class="map-wrapper hidden" id="mapWrapper" style="width:100%;">
+        <iframe
+          id="mapFrame"
+          width="100%"
+          height="280"
+          style="border:0;border-radius:14px;display:block;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <a href="#" id="openMapsLink" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-top:12px;width:100%;">
+          Voir tous les résultats sur Google Maps
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;flex-shrink:0;">
+            <path d="M6 3h7v7M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="disclaimer" style="margin-top:16px;">
+        Les praticiens affichés proviennent de Google Maps et ne sont ni sélectionnés
+        ni recommandés par SeinTinelle. Vérifiez toujours les disponibilités et
+        spécialités avant de prendre rendez-vous.
+      </p>
+    </div>
+
+    <div class="card mt-16">
+      <p class="card-title">Avant le rendez-vous</p>
+      <h2 class="card-heading">Bien préparer votre consultation</h2>
+      <div class="info-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card">
+          <div class="stat-label">Munissez-vous de vos résultats SeinTinelle, de vos précédentes mammographies et de votre carnet médical.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Notez vos antécédents familiaux (mère, sœur, fille) et toute évolution récente que vous avez constatée.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Listez vos questions à l'avance. N'hésitez pas à demander des explications sur les prochaines étapes.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+  <script src="consulter.js"></script>
+</body>
+</html>

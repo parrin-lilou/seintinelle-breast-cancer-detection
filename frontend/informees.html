@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head> <!-- Afficher la page / titre sur tous les écrans et import des fichiers / mise en page -->
+  <meta charset="UTF-8" />  <!-- Pour afficher les accents et caractères spéciaux -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — Restez Informées</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header"> <!-- Logo vers page d'accueil -->
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+
+    <nav class="nav"> <!-- Menu de navigation -->
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html" class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link active">Restez Informées</a>
+      <a href="apropos.html"  class="nav-link">À Propos de nous</a>
+      <a href="faq.html"  class="nav-link">FAQ</a>
+
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="page-intro"> <!-- Introduction de la page -->
+      <span class="page-tag">Projet étudiants — E3 ESIEE 2025/2026</span>
+      <h1 class="page-title">Restez informées</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Parce que chaque femme mérite d'être informée.
+        Retrouvez ici des ressources fiables sur le dépistage, la prévention et les dernières avancées de la recherche.
+      </p>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — NEWSLETTERS & SOURCES OFFICIELLES
+         ══════════════════════════════════════════ -->
+   
+         <section class="info-section"> <!-- Introduction de la section -->
+      <div class="info-section-header">
+        <span class="info-section-tag">Newsletters & organismes officiels</span>
+        <h2 class="info-section-title">Suivre l'actualité du dépistage</h2>
+        <p class="page-desc" style="max-width:100%;">
+          Accédez à des bulletins de santé et à des campagnes de prévention fiables et actualisées.
+        </p>
+      </div>
+
+      <div class="info-grid"> <!-- Informations sur les différentes rubriques  -->
+
+        <!-- Rubrique Santé Publique France -->
+        <a href="https://www.santepubliquefrance.fr/maladies-et-traumatismes/cancers/cancer-du-sein" target="_blank" rel="noopener" class="info-card info-card--primary">
+          <div class="info-card-header">
+            <span class="info-card-tag">Newsletter officielle</span>
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 8l9-5 9 5v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <h3 class="info-card-title">Santé publique France</h3>
+          <p class="info-card-desc">
+            Bulletins épidémiologiques, données nationales de dépistage et newsletter
+            thématique sur le cancer du sein. Publie chaque année les taux de participation
+            au programme organisé.
+          </p>
+          <div class="info-card-meta">
+            <span class="info-card-update">Dernière publication : mai 2025</span>
+            <span class="info-card-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Rubrique Institut National du Cancer -->
+        <a href="https://www.e-cancer.fr/Patients-et-proches/Les-cancers/Cancer-du-sein/Points-cles" target="_blank" rel="noopener" class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-tag">Institut national</span>
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <h3 class="info-card-title">Institut National du Cancer</h3>
+          <p class="info-card-desc">
+            Référence nationale pour les patients et professionnels de santé. Guides
+            pratiques, recommandations cliniques et informations sur les traitements
+            disponibles en France.
+          </p>
+          <div class="info-card-meta">
+            <span class="info-card-update">INCa — inca.fr</span>
+            <span class="info-card-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+        
+        <!-- Rubrique Programme National de Depistage -->
+        <a href="https://www.depistage-cancer.fr" target="_blank" rel="noopener" class="info-card">
+          <div class="info-card-header">
+            <span class="info-card-tag">Programme national</span>
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+          <h3 class="info-card-title">Je fais mon dépistage</h3>
+          <p class="info-card-desc">
+            Portail officiel du programme national de dépistage organisé. Trouvez
+            un centre agréé près de chez vous et prenez rendez-vous pour votre
+            mammographie de dépistage prise en charge à 100 %.
+          </p>
+          <div class="info-card-meta">
+            <span class="info-card-update">50–74 ans · Gratuit · Tous les 2 ans</span>
+            <span class="info-card-arrow">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — CHIFFRES CLÉS
+         ══════════════════════════════════════════ -->
+    
+         <section class="info-section">  <!-- Introduction section -->
+      <div class="info-section-header">
+        <span class="info-section-tag">Bon à savoir</span>
+        <h2 class="info-section-title">Les chiffres à connaître</h2>
+      </div>
+
+      <!-- Rubriques avec les Statistiques (les 4) -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">61 214</div>
+          <div class="stat-label">nouveaux cas estimés en 2023 en France</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">90%</div>
+          <div class="stat-label">de guérison si détecté à un stade précoce</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">44%</div>
+          <div class="stat-label">de participation au dépistage organisé en 2024</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1<span style="font-size:1.8rem">/3</span></div>
+          <div class="stat-label">des cancers féminins en France est un cancer du sein</div>
+        </div>
+      </div>
+
+      <p class="stats-source">
+        Sources : Santé publique France — Bulletin national mai 2025 · INCa · ARS Île-de-France
+      </p>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — ÉTUDES RÉCENTES
+         ══════════════════════════════════════════ -->
+    
+         <section class="info-section">  <!-- Introduction de la section -->
+      <div class="info-section-header">
+        <span class="info-section-tag">Recherche & publications scientifiques</span>
+        <h2 class="info-section-title">Études récentes sur l'IA & le dépistage</h2>
+        <p class="info-section-desc">
+          Une sélection de publications scientifiques récentes pour se coucher moins bête le soir ! 
+        </p>
+      </div>
+
+      <div class="studies-list"> <!-- Liste des publications -->
+
+        <!-- 1ere publication -->
+        <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2824314" target="_blank" rel="noopener" class="study-item">
+          <div class="study-badge study-badge--jama">JAMA</div>
+          <div class="study-content">
+            <div class="study-meta-row">
+              <span class="study-journal">JAMA Network Open</span>
+              <span class="study-year">2024</span>
+            </div>
+            <h3 class="study-title">Détection subclinique du cancer du sein par algorithme d'IA</h3>
+            <p class="study-authors">Gjesvik J, Moshina N, Lee CI, Miglioretti DL, Hofvind S.</p>
+            <p class="study-abstract">
+              Les algorithmes d'IA peuvent prédire le développement d'un cancer du sein
+              des années avant sa détection clinique, ouvrant la voie à des stratégies
+              de dépistage personnalisées.
+            </p>
+          </div>
+          <span class="study-arrow">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <!-- 2eme publication -->
+        <a href="https://www.thelancet.com/journals/landig/article/PIIS2589-7500(24)00173-0/fulltext" target="_blank" rel="noopener" class="study-item">
+          <div class="study-badge study-badge--lancet">Lancet</div>
+          <div class="study-content">
+            <div class="study-meta-row">
+              <span class="study-journal">The Lancet Digital Health</span>
+              <span class="study-year">2024</span>
+            </div>
+            <h3 class="study-title">Stratégies d'intégration de l'IA dans les programmes de dépistage mammographique</h3>
+            <p class="study-authors">Fisches ZV, Ball M, Mukama T, et al.</p>
+            <p class="study-abstract">
+              Analyse de simulation rétrospective de sept stratégies d'intégration de l'IA,
+              démontrant son potentiel pour améliorer la détection et réduire la charge
+              de travail des radiologues.
+            </p>
+          </div>
+          <span class="study-arrow">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <!-- 3eme publication -->
+        <a href="https://www.therapixel.fr/etudes-devoilees-aux-jfr-2025-confirment-le-role-d-ia/" target="_blank" rel="noopener" class="study-item">
+          <div class="study-badge study-badge--fr">JFR</div>
+          <div class="study-content">
+            <div class="study-meta-row">
+              <span class="study-journal">Journées Françaises de Radiologie</span>
+              <span class="study-year">2025</span>
+            </div>
+            <h3 class="study-title">Deux études françaises confirment le rôle transformateur de l'IA en dépistage</h3>
+            <p class="study-authors">Therapixel — JFR Paris, octobre 2025</p>
+            <p class="study-abstract">
+              En 2024, 1,4 million d'examens ont déjà été réalisés avec le support de l'IA
+              en France (25 % des mammographies), avec une amélioration de 28 % du taux
+              de détection dans l'essai MAIA (Suède).
+            </p>
+          </div>
+          <span class="study-arrow">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <!--4eme publication -->
+        <a href="https://www.santepubliquefrance.fr/maladies-et-traumatismes/cancers/cancer-du-sein/taux-de-participation-au-programme-de-depistage-organise-du-cancer-du-sein-en-2024-et-evolution" target="_blank" rel="noopener" class="study-item">
+          <div class="study-badge study-badge--spf">SPF</div>
+          <div class="study-content">
+            <div class="study-meta-row">
+              <span class="study-journal">Santé publique France — Bulletin national</span>
+              <span class="study-year">2025</span>
+            </div>
+            <h3 class="study-title">Participation au dépistage organisé du cancer du sein en 2024</h3>
+            <p class="study-authors">Rogel A, Plaine J, Quintin C. — Saint-Maurice : SPF</p>
+            <p class="study-abstract">
+              Le taux standardisé de participation est estimé à 44,0 % en 2024, avec
+              des hétérogénéités régionales importantes. Le programme couvre les femmes
+              de 50 à 74 ans avec une mammographie prise en charge à 100 %.
+            </p>
+          </div>
+          <span class="study-arrow">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <!-- 5eme publication -->
+        <a href="https://pubmed.ncbi.nlm.nih.gov/38640824/" target="_blank" rel="noopener" class="study-item">
+          <div class="study-badge study-badge--pubmed">PubMed</div>
+          <div class="study-content">
+            <div class="study-meta-row">
+              <span class="study-journal">PubMed — Revue de littérature</span>
+              <span class="study-year">2024</span>
+            </div>
+            <h3 class="study-title">L'IA dans le dépistage du cancer du sein : panorama du paysage actuel</h3>
+            <p class="study-authors">Louie AV, Wong TH, Kim HB, et al.</p>
+            <p class="study-abstract">
+              Revue de littérature internationale sur l'état de l'art des algorithmes
+              d'IA appliqués à la mammographie de dépistage, leurs performances et
+              leurs limites cliniques.
+            </p>
+          </div>
+          <span class="study-arrow">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 — RAPPEL DÉPISTAGE
+         ══════════════════════════════════════════ -->
+    
+         <section class="info-section"> <!-- Introduction de la section -->
+      <div class="depistage-banner">
+        <div class="depistage-banner-left">
+          <span class="depistage-banner-tag">Programme national · Gratuit</span>
+          <h3 class="depistage-banner-title">Avez-vous fait une mammographie récemment?</h3>
+          <p class="depistage-banner-desc">
+            Si vous avez entre 50 et 74 ans, le programme national vous invite tous les deux ans
+            à une mammographie prise en charge à 100 % par l'Assurance Maladie.
+          </p>
+        </div>
+        <a href="https://www.depistage-cancer.fr" target="_blank" rel="noopener" class="depistage-banner-btn">
+          Trouver un centre agréé
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+</body>
+</html>

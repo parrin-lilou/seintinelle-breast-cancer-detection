@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — Détection</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- POPUP PRÉVENTION -->
+  <div class="prevention-overlay hidden" id="preventionOverlay">
+    <div class="prevention-modal">
+      <div class="prevention-ribbon">🎗</div>
+      <span class="prevention-tag">Rappel de prévention</span>
+      <h2 class="prevention-title">L'IA ne remplace pas<br>un dépistage officiel</h2>
+      <p class="prevention-body">
+        Ce système est un <strong>outil d'aide à la détection.</strong><br>
+        Seul un examen médical réalisé et interprété par un <strong>radiologues certifiés</strong> permet d'établir un <strong>diagnostic fiable.</strong>
+      </p>
+      <div class="prevention-stat">
+        <div class="prevention-stat-num">90%</div>
+        <div class="prevention-stat-text">des cancers du sein se guérissent lorsqu'ils sont détectés à un <strong>stade précoce.</strong></div>
+      </div>
+      <div class="prevention-bar-track">
+        <div class="prevention-bar-fill" id="prevBar"></div>
+      </div>
+      <p class="prevention-progress-label" id="prevLabel">Analyse en cours… fermeture automatique</p>
+      <button class="btn-primary" onclick="closePrevention()">J'ai compris, continuer</button>
+    </div>
+  </div>
+
+  <header class="header no-print">
+    <!-- Logo SeinTinelle + Nom -->
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+
+    <nav class="nav">
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link active">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html" class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"  class="nav-link">À Propos de nous</a>
+      <a href="faq.html"  class="nav-link">FAQ</a>
+    </nav>
+
+    <!-- Logo Octobre Rose -->
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-intro">
+      <span class="page-tag">01 — Modules de détection</span>
+      <h1 class="page-title">Détection d'anomalie</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Souhaitez-vous tester la détection d'anomalie sur une mammographie ou une échographie mammaire ?
+      </p>
+    
+      <div class="cta-buttons no-print" style="justify-content:center; margin-top:20px;">
+        <a href="#mammographie" class="cta-btn">Mammographie</a>
+        <a href="#echographie" class="cta-btn">Échographie mammaire</a>
+      </div>
+      <p class="page-desc" style="max-width:100%;">
+        <br><br>
+      </p>
+    
+      <h2 class="info-section-title" id="mammographie">Analyse de mammographie</h2>
+      <p class="page-desc" style="max-width:100%;">
+        Importez vos mammographies et laissez notre outil vous accompagner. Pour une analyse plus précise, déposez la vue de face <strong>(CC)</strong> et la vue oblique <strong>(MLO)</strong> afin que notre modèle puisse croiser les informations. En quelques secondes, vous obtenez une première lecture assistée par intelligence artificielle.
+      </p>
+    </div>
+
+    <!-- Ligne du haut : deux vues côte à côte -->
+    <div class="no-print" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px;">
+
+      <!-- Vue 1 -->
+      <div class="card">
+        <p class="card-title">Vue 1 — Obligatoire</p>
+        <h2 class="card-heading">Vue de face</h2>
+        <p class="card-desc" style="max-width:100%;">Déposez ici votre mammographie de face pour commencer l'analyse. Les formats <strong>DICOM (.dcm)</strong> et <strong>PNG</strong> sont recommandés pour une analyse optimale.</p>
+        <p class="card-desc" style="max-width:100%;">
+        </p>
+
+        <p class="info-secondaire" style="margin-bottom:16px;">Le format JPEG est accepté mais peut légèrement affecter la précision.</p>
+        <div class="format-warning hidden" id="formatWarning1">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zM8 6v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Pour des résultats optimaux, utilisez un fichier DICOM (.dcm) ou PNG. Le format JPEG est accepté mais peut légèrement affecter la précision.
+        </div>
+
+        <div class="dropzone" id="dropzone1">
+          <input type="file" id="fileInput1" accept=".dcm,.jpg,.jpeg,.png" hidden />
+          <div class="dropzone-inner" id="dropzoneInner1">
+            <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="dropzone-text">vue CC (face)<br/><span> <button class="link-btn" id="browseBtn1">parcourir</button></span></p>
+          </div>
+          <img id="preview1" class="preview-img hidden" alt="Vue 1" />
+          <div id="dicomPreview1" class="dicom-badge hidden">DICOM chargé</div>
+        </div>
+      </div>
+
+      <!-- Vue 2 -->
+      <div class="card">
+        <p class="card-title">Vue 2 — Recommandée</p>
+        <h2 class="card-heading">Vue oblique</h2>
+        <p class="card-desc" style="max-width:100%;">Ajoutez votre vue oblique pour affiner l'analyse. Combinée à la vue de face, elle améliore significativement la fiabilité des résultats. Les formats <strong>DICOM (.dcm)</strong> et <strong>PNG</strong> sont recommandés pour une analyse optimale.</p>
+        <p class="info-secondaire" style="margin-bottom:16px;">Le format JPEG est accepté mais peut légèrement affecter la précision.</p>
+
+    
+
+        <div class="format-warning hidden" id="formatWarning2">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zM8 6v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Pour des résultats optimaux, utilisez un fichier DICOM (.dcm) ou PNG. Le format JPEG est accepté mais peut légèrement affecter la précision.
+        </div>
+
+        <div class="dropzone" id="dropzone2">
+          <input type="file" id="fileInput2" accept=".dcm,.jpg,.jpeg,.png" hidden />
+          <div class="dropzone-inner" id="dropzoneInner2">
+            <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="dropzone-text">vue MLO (oblique)<br/><span> <button class="link-btn" id="browseBtn2">parcourir</button></span></p>
+          </div>
+          <img id="preview2" class="preview-img hidden" alt="Vue 2" />
+          <div id="dicomPreview2" class="dicom-badge hidden">DICOM chargé</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ligne du bas : résultat mammo + boutons -->
+    <div class="card" style="width:100%;">
+      <p class="card-title">Résultat</p>
+      <h2 class="card-heading">Résultats de l'analyse</h2>
+      <p class="card-desc" style="max-width:100%;">Une fois vos images déposées, notre IA génère un score de risque et évalue la densité de votre tissu mammaire.</p>
+
+      <div class="result-box" id="resultBox" style="width:100%;max-width:600px;">
+        <div class="result-idle" id="resultIdle">
+          <svg viewBox="0 0 48 48" fill="none" style="width:40px;height:40px">
+            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 18v8M24 30v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p>En attente d'images…</p>
+        </div>
+        <div class="result-loading hidden" id="resultLoading">
+          <div class="spinner"></div>
+          <p id="loadingMsg">Recadrage en cours…</p>
+        </div>
+        <div class="result-output hidden" id="resultOutput">
+          <div class="result-score-row">
+            <div class="result-score" id="resultScore">—</div>
+            <div class="result-badge" id="resultBadge">—</div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+          </div>
+          <p class="result-prob-label" id="resultProbLabel">Score de risque détecté</p>
+
+          <div class="density-row" id="densityRow" style="display:none">
+            <span class="meta-key">Densité mammaire</span>
+            <div class="density-badges" id="densityBadges">
+              <span class="density-badge" data-d="A">A</span>
+              <span class="density-badge" data-d="B">B</span>
+              <span class="density-badge" data-d="C">C</span>
+              <span class="density-badge" data-d="D">D</span>
+            </div>
+          </div>
+          <p class="result-prob-label" style="margin-top:8px;">Une densité élevée (C ou D) peut rendre la détection plus difficile et est associée à un risque accru de cancer du sein.</p>
+
+          <div class="result-meta">
+            <div class="meta-item">
+              <span class="meta-key">Seuil alerte</span>
+              <span class="meta-val">0.013</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Fichiers analysés</span>
+              <span class="meta-val" id="metaViews">—</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Durée</span>
+              <span class="meta-val" id="metaDuration">—</span>
+            </div>
+          </div>
+          <p class="disclaimer">Prototype de recherche : ne constitue pas un diagnostic médical.</p>
+          <button type="button" class="btn-secondary no-print" id="printBtn" onclick="window.print()" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;">
+            <span>Télécharger / Imprimer le résultat (PDF)</span>
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;">
+              <path d="M5 7V3h10v4M5 13h10v4H5v-4zM3 7h14v6H3V7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-primary no-print" id="analyzeBtn" disabled>
+        <span>Lancer l'analyse</span>
+        <svg viewBox="0 0 20 20" fill="none">
+          <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="btn-secondary hidden no-print" id="resetBtn">Réinitialiser</button>
+    </div>
+  </div>
+    <p class="page-desc" style="max-width:100%;">
+      <br><br>
+    </p>
+    <a href="consulter.html" id="ctaConsulter" class="cta-btn no-print" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;margin-top:20px;gap:4px;text-align:center;">
+      <span style="font-size:1rem;font-weight:700;">Prendre rendez-vous avec un médecin</span>
+      <span style="font-size:0.78rem;font-weight:400;opacity:0.85;">Quel que soit votre résultat, un avis médical reste essentiel. Trouvez un médecin juste ici !</span>
+    </a>
+    <p class="page-desc" style="max-width:100%;">
+      <br><br>
+    </p>
+  
+    <h2 class="info-section-title" id="echographie">Analyse d'échographie</h2>
+    <p class="page-desc" style="max-width:100%;">
+      Importez votre échographie mammaire et laissez notre outil vous accompagner. 
+      Notre modèle analyse l'image à la recherche d'éventuelles anomalies. 
+      En quelques secondes, vous obtenez une première lecture assistée par 
+      intelligence artificielle.
+    </p>
+    <p class="page-desc" style="max-width:100%;">
+      <br><br>
+    </p>
+  </div>
+  
+
+    <div class="no-print" style="display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:32px;">
+
+      <!-- Vue échographie -->
+      <div class="card" style="width:100%;">
+        <p class="card-title">Image — Obligatoire</p>
+        <h2 class="card-heading">Échographie mammaire</h2>
+        <p class="card-desc" style="max-width:100%;">Déposez ici votre échographie mammaire pour commencer l'analyse. 
+          Le format PNG est recommandé pour une analyse optimale. Le format DICOM (.dcm) n'est pas accepté.</p>
+    
+        <p class="info-secondaire" style="margin-bottom:16px;">Le format JPEG est accepté mais peut légèrement affecter la précision.</p>
+        <div class="format-warning hidden" id="formatWarning3">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 2a6 6 0 100 12A6 6 0 008 2zM8 6v3M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Pour des résultats optimaux, utilisez un fichier PNG. Le format JPEG est accepté mais peut légèrement affecter la précision. Le format DICOM (.dcm) n'est pas accepté.
+        </div>
+    
+        <div class="dropzone" id="dropzone3" style="min-height:140px; padding:20px;">
+          <input type="file" id="fileInput3" accept="image/png,image/jpeg" hidden />
+          <div class="dropzone-inner" id="dropzoneInner3">
+            <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <p class="dropzone-text">Échographie mammaire<br/><span> <button class="link-btn" id="browseBtn3">parcourir</button></span></p>
+          </div>
+          <img id="preview3" class="preview-img hidden" alt="Échographie mammaire" />
+          <div id="dicomPreview3" class="dicom-badge hidden">DICOM chargé</div>
+        </div>
+      </div>
+
+      <!-- Ligne du bas : résultat échographie -->
+<div class="card" style="width:100%;">
+  <p class="card-title">Résultat</p>
+  <h2 class="card-heading">Résultats de l'analyse</h2>
+  <p class="card-desc" style="max-width:100%;">Une fois votre image déposée, notre IA génère un score de risque pour cette échographie.</p>
+
+  <div class="result-box" id="resultBoxEcho" style="width:100%;max-width:600px;">
+    <div class="result-idle" id="resultIdleEcho">
+      <svg viewBox="0 0 48 48" fill="none" style="width:40px;height:40px">
+        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M24 18v8M24 30v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p>En attente d'image…</p>
+    </div>
+    <div class="result-loading hidden" id="resultLoadingEcho">
+      <div class="spinner"></div>
+      <p id="loadingMsgEcho">Analyse en cours…</p>
+    </div>
+    <div class="result-output hidden" id="resultOutputEcho">
+      <div class="result-score-row">
+        <div class="result-score" id="resultScoreEcho">—</div>
+        <div class="result-badge" id="resultBadgeEcho">—</div>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFillEcho" style="width:0%"></div>
+      </div>
+      <p class="result-prob-label" id="resultProbLabelEcho">Score de risque détecté</p>
+
+      <div class="result-meta">
+        <div class="meta-item">
+          <span class="meta-key">Seuil alerte</span>
+          <span class="meta-val">0.735</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Image analysée</span>
+          <span class="meta-val" id="metaViewsEcho">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Durée</span>
+          <span class="meta-val" id="metaDurationEcho">—</span>
+        </div>
+      </div>
+      <p class="disclaimer">Prototype de recherche : ne constitue pas un diagnostic médical.</p>
+      <button type="button" class="btn-secondary no-print" id="printBtnEcho" onclick="window.print()" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;">
+        <span>Télécharger / Imprimer le résultat (PDF)</span>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;">
+          <path d="M5 7V3h10v4M5 13h10v4H5v-4zM3 7h14v6H3V7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <button class="btn-primary no-print" id="analyzeBtnEcho" disabled>
+    <span>Lancer l'analyse</span>
+    <svg viewBox="0 0 20 20" fill="none">
+      <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="btn-secondary hidden no-print" id="resetBtnEcho">Réinitialiser</button>
+</div>
+<a href="consulter.html" id="ctaConsulter" class="cta-btn no-print" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;margin-top:20px;gap:4px;text-align:center;">
+  <span style="font-size:1rem;font-weight:700;">Prendre rendez-vous avec un médecin</span>
+  <span style="font-size:0.78rem;font-weight:400;opacity:0.85;">Quel que soit votre résultat, un avis médical reste essentiel. Trouvez un médecin juste ici !</span>
+</a>
+<p class="page-desc" style="max-width:100%;">
+  <br><br>
+</p>
+    
+    </div>
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+  <script src="detection.js"></script>
+  <script>
+    let _prevTimer = null;
+
+    function startPrevention(duration) {
+      const overlay = document.getElementById('preventionOverlay');
+      const bar     = document.getElementById('prevBar');
+      const label   = document.getElementById('prevLabel');
+      overlay.classList.remove('hidden');
+      overlay.classList.remove('closing');
+      let progress = 0;
+      _prevTimer = setInterval(() => {
+        progress = Math.min(progress + (50 / duration) * 100, 100);
+        bar.style.width = progress.toFixed(1) + '%';
+        if (progress >= 100) {
+          clearInterval(_prevTimer);
+          label.textContent = 'Analyse terminée, fermeture automatique';
+          setTimeout(closePrevention, 600);
+        }
+      }, 50);
+    }
+
+    function closePrevention() {
+      clearInterval(_prevTimer);
+      const overlay = document.getElementById('preventionOverlay');
+      overlay.classList.add('closing');
+      overlay.addEventListener('animationend', () => {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('closing');
+        document.getElementById('prevBar').style.width = '0%';
+        document.getElementById('prevLabel').textContent = 'Analyse en cours… fermeture automatique';
+      }, { once: true });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — Test de cohérence du modèle</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+    <nav class="nav">
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html"  class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"    class="nav-link">À Propos de nous</a>
+      <a href="faq.html"        class="nav-link">FAQ</a>
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="page-intro">
+      <span class="page-tag">Outil interne — non destiné aux utilisatrices</span>
+      <h1 class="page-title">Test de cohérence du modèle</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Dépose 4 mammographies une seule fois, puis fais varier un facteur clinique à la fois
+        pour vérifier que le score évolue dans le sens attendu (âge, densité, IMC, antécédents).
+        Les 4 images restent identiques entre chaque test — seul le facteur sélectionné change.
+      </p>
+    </div>
+
+    <div class="card mt-16">
+      <p class="card-title">Étape 1</p>
+      <h2 class="card-heading">Mammographies de référence</h2>
+      <p class="card-desc">Déposées une seule fois, réutilisées pour tous les tests ci-dessous.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;">
+        <div class="dropzone" id="dropzoneTestLCC" style="min-height:90px;">
+          <input type="file" id="fileTestLCC" accept="image/*" hidden />
+          <div class="dropzone-inner" id="innerTestLCC" style="padding:14px;">
+            <p class="dropzone-text" style="font-size:0.8rem;">L-CC</p>
+          </div>
+        </div>
+        <div class="dropzone" id="dropzoneTestRCC" style="min-height:90px;">
+          <input type="file" id="fileTestRCC" accept="image/*" hidden />
+          <div class="dropzone-inner" id="innerTestRCC" style="padding:14px;">
+            <p class="dropzone-text" style="font-size:0.8rem;">R-CC</p>
+          </div>
+        </div>
+        <div class="dropzone" id="dropzoneTestLMLO" style="min-height:90px;">
+          <input type="file" id="fileTestLMLO" accept="image/*" hidden />
+          <div class="dropzone-inner" id="innerTestLMLO" style="padding:14px;">
+            <p class="dropzone-text" style="font-size:0.8rem;">L-MLO</p>
+          </div>
+        </div>
+        <div class="dropzone" id="dropzoneTestRMLO" style="min-height:90px;">
+          <input type="file" id="fileTestRMLO" accept="image/*" hidden />
+          <div class="dropzone-inner" id="innerTestRMLO" style="padding:14px;">
+            <p class="dropzone-text" style="font-size:0.8rem;">R-MLO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-16">
+      <p class="card-title">Étape 2</p>
+      <h2 class="card-heading">Facteur à faire varier</h2>
+      <p class="card-desc">Choisis un facteur clinique. Les autres restent fixes (valeurs ci-dessous).</p>
+
+      <div class="filter-row" id="factorRow" style="margin-top:8px;">
+        <button class="filter-chip active" data-factor="age">Âge</button>
+        <button class="filter-chip" data-factor="bmi">IMC</button>
+        <button class="filter-chip" data-factor="density">Densité BI-RADS</button>
+        <button class="filter-chip" data-factor="family">Antécédents familiaux</button>
+      </div>
+
+      <div class="form-grid" style="margin-top:20px;">
+        <div class="form-group">
+          <label for="fixedAge">Âge fixe (si non testé)</label>
+          <input type="number" id="fixedAge" value="50" min="20" max="90" />
+        </div>
+        <div class="form-group">
+          <label for="fixedBmi">IMC fixe (si non testé)</label>
+          <input type="number" id="fixedBmi" value="24" step="0.1" min="15" max="50" />
+        </div>
+        <div class="form-group">
+          <label for="fixedDensity">Densité fixe (si non testée)</label>
+          <select id="fixedDensity">
+            <option value="1">A</option>
+            <option value="2" selected>B</option>
+            <option value="3">C</option>
+            <option value="4">D</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fixedFamily">Antécédents fixes (si non testés)</label>
+          <select id="fixedFamily">
+            <option value="0" selected>Non</option>
+            <option value="1">Oui</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="runTestBtn" style="margin-top:8px;" disabled>
+        <span>Lancer les 4 tests</span>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <p class="disclaimer" id="runStatus" style="margin-top:12px;">Dépose les 4 images ci-dessus pour activer le test.</p>
+    </div>
+
+    <div class="card mt-16 hidden" id="resultsCard">
+      <p class="card-title">Résultats</p>
+      <h2 class="card-heading">Évolution du score</h2>
+      <p class="card-desc">Le score final devrait évoluer de façon monotone dans le sens attendu par l'épidémiologie.</p>
+
+      <div style="position:relative;height:260px;margin-top:16px;">
+        <canvas id="coherenceChart"></canvas>
+      </div>
+
+      <table style="width:100%;margin-top:24px;border-collapse:collapse;font-size:0.85rem;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border-light);">
+            <th style="text-align:left;padding:8px 4px;color:var(--text-secondary);">Valeur testée</th>
+            <th style="text-align:right;padding:8px 4px;color:var(--text-secondary);">Score image</th>
+            <th style="text-align:right;padding:8px 4px;color:var(--text-secondary);">Score clinique</th>
+            <th style="text-align:right;padding:8px 4px;color:var(--text-secondary);">Score final</th>
+            <th style="text-align:right;padding:8px 4px;color:var(--text-secondary);">Niveau</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTableBody"></tbody>
+      </table>
+
+      <p class="disclaimer" id="coherenceVerdict" style="margin-top:16px;"></p>
+    </div>
+
+  </main>
+
+  <script src="test_coherence.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head> <!-- Afficher la page / titre sur tous les écrans et import des fichiers / mise en page -->
+  <meta charset="UTF-8" />  <!-- Pour afficher les accents et caractères spéciaux -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — À propos de nous</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header"> <!-- Logo vers page d'accueil -->
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+
+    <nav class="nav"> <!-- Menu de navigation -->
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html" class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"  class="nav-link active">À Propos de nous</a>
+      <a href="faq.html"  class="nav-link">FAQ</a>
+
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="page-intro"> <!-- Introduction de la page -->
+      <span class="page-tag">Projet étudiants — E3 ESIEE 2025/2026</span>
+      <h1 class="page-title">À Propos de nous</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Retrouvez sur cette page toute l'équipe d'étudiants derrière ce projet 
+        qui nous a passionnés pendant de longues semaines. Apprenez-en plus sur 
+        ceux qui l'ont rendu possible !
+        <br><br>
+
+      </p>
+      <h2 class="info-section-title">Pourquoi ce projet ?</h2>
+      <p class="page-desc" style="max-width:100%;">
+        Le cancer du sein touche 1 femme sur 8 au cours de sa vie, et un dépistage 
+        précoce multiplie considérablement les chances de guérison. Étudiants en E3E 
+        à ESIEE Paris, nous avons voulu mettre nos compétences en intelligence 
+        artificielle au service de la santé, en proposant un outil d'aide à la 
+        détection et à la prédiction accessible à tous.
+      </p>
+
+    </div>
+
+ <!-- ══════════════════════════════════════════
+     SECTION 1 — MEMBRES DE L'EQUIPE
+     ══════════════════════════════════════════ -->
+
+<div class="info-section"> <!-- Conteneur global -->
+  <h2 class="info-section-title">Découvrez tous nos membres !</h2>
+
+  <div class="info-grid"> <!-- Grille uniquement pour les cartes -->
+
+    <div class="info-card">
+      <h3 class="info-card-title">Nathan GAUTIER, E3E</h3>
+      <p class="info-card-desc">descritpion</p>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">Maxime LENFANT, E3E</h3>
+      <p class="info-card-desc">descritpion</p>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">Ayoub MERNISSI, E3E</h3>
+      <p class="info-card-desc">descritpion</p>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">Antoine NAVARRO, E3E</h3>
+      <p class="info-card-desc">descritpion</p>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">Rayan OULBOUB, E3E</h3>
+      <p class="info-card-desc">descritpion</p>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">Lilou PARRIN, E3E</h3>
+      <p class="info-card-desc">Souhaitant me spécialiser en data science 
+        et intelligence artificielle, ce projet était pour moi une évidence. 
+        Le cancer du sein ne touche pas que les autres, c'est pourquoi ce projet 
+        me tient particulièrement à cœur.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — Remerciements
+     ══════════════════════════════════════════ -->
+     <h2 class="info-section-title">Remerciements</h2>
+     <p class="page-desc" style="max-width:100%;">
+      Toute l'équipe de SeinTinelle tient à remercier chaleureusement notre 
+      suiveuse de projet, Mme Imen KACHOURI, pour son accompagnement et ses 
+      conseils précieux tout au long de ce projet. Nous remercions également 
+      l'ensemble de l'équipe du Jour des Projets pour l'organisation de cet 
+      événement, qui nous a permis de présenter notre travail dans les 
+      meilleures conditions.
+      <br><br>
+     </p>
+
+   <!-- ══════════════════════════════════════════
+     SECTION 3 — CTA FINAL
+     ══════════════════════════════════════════ -->
+
+<div class="info-section cta-section">
+  <h2 class="info-section-title">Prêt à essayer ?</h2>
+  <p class="page-desc" style="max-width:100%;">
+    Maintenant que vous nous connaissez un peu mieux, découvrez SeinTinelle 
+    en action : déposez une mammographie ou complétez vos données pour 
+    obtenir une première analyse.
+  </p>
+
+  <div class="cta-buttons">
+    <a href="detection.html" class="cta-btn">Tester la Détection</a>
+    <a href="prediction.html" class="cta-btn">Tester la Prédiction</a>
+  </div>
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — Prédiction</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- POPUP PRÉVENTION -->
+  <div class="prevention-overlay hidden" id="preventionOverlay">
+    <div class="prevention-modal">
+      <div class="prevention-ribbon">🎗</div>
+      <span class="prevention-tag">Rappel de prévention</span>
+      <h2 class="prevention-title">L'IA ne remplace pas<br>un dépistage officiel</h2>
+      <p class="prevention-body">
+        Ce système est un <strong>outil d'aide à l'évaluation du risque.</strong><br>
+        Seul un examen médical réalisé et interprété par des <strong>radiologues certifiés</strong> permet d'établir un <strong>diagnostic fiable.</strong>
+      </p>
+      <div class="prevention-stat">
+        <div class="prevention-stat-num">90%</div>
+        <div class="prevention-stat-text">des cancers du sein se guérissent lorsqu'ils sont détectés à un <strong>stade précoce</strong></div>
+      </div>
+      <div class="prevention-bar-track">
+        <div class="prevention-bar-fill" id="prevBar"></div>
+      </div>
+      <p class="prevention-progress-label" id="prevLabel">Analyse en cours… fermeture automatique</p>
+      <button class="btn-primary" onclick="closePrevention()">J'ai compris, continuer</button>
+    </div>
+  </div>
+
+  <header class="header no-print">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+    <nav class="nav">
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link active">Prédiction</a>
+      <a href="consulter.html" class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"  class="nav-link">À Propos de nous</a>
+      <a href="faq.html"  class="nav-link">FAQ</a>
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-intro">
+      <span class="page-tag">02 — Module de prédiction</span>
+      <h1 class="page-title">Prédiction multimodale</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Importez vos mammographies (4 vues : face et oblique, pour les deux seins) et complétez 
+        vos données cliniques pour affiner l'analyse. Notre modèle combine ces informations afin 
+        d'évaluer votre risque de cancer du sein à long terme. En quelques secondes, vous obtenez 
+        une première estimation assistée par intelligence artificielle.
+      </p>
+    </div>
+
+    <div class="two-col mt-16 no-print">
+
+      <div class="card">
+        <p class="card-title">Données cliniques — Gail / Tyrer-Cuzick</p>
+        <h2 class="card-heading">Facteurs de risque</h2>
+        <p class="card-desc">Remplissez ici vos données personnelles et médicales pour affiner 
+          l'estimation. Les champs non disponibles peuvent être laissés vides.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="age">1. Âge (ans)</label>
+            <input type="number" id="age" min="0" max="100" placeholder="ex : 52" />
+          </div>
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="bmi">2. IMC (kg/m²)</label>
+              <button type="button" class="info-tip" aria-label="Qu'est-ce que l'IMC ?">
+                <svg class="info-tip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M8 7.2v3.3M8 5v.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <span class="info-tip-bubble">
+                  L'IMC (Indice de Masse Corporelle) se calcule en divisant votre poids (kg) par votre taille au carré (m²). Exemple : 65 kg pour 1,65 m → environ 23,9. Vous le trouverez aussi sur votre carnet de santé ou un bilan médical récent.
+                </span>
+              </button>
+            </div>
+            <input type="number" id="bmi" step="0.1" min="0" max="100" placeholder="ex : 24.5" />
+          </div>
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="density">3. Densité mammaire BI-RADS</label>
+              <button type="button" class="info-tip" aria-label="Qu'est-ce que la densité mammaire BI-RADS ?">
+                <svg class="info-tip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M8 7.2v3.3M8 5v.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <span class="info-tip-bubble">
+                  Classification (A à D) de la proportion de tissu dense dans le sein, indiquée sur votre compte-rendu de mammographie. A = sein peu dense, D = sein très dense (le tissu dense peut rendre la lecture des images plus difficile). Laissez sur "Non disponible" si vous ne l'avez pas.
+                </span>
+              </button>
+            </div>
+            <select id="density">
+              <option value="">— Non disponible —</option>
+              <option value="1">A — Très faible</option>
+              <option value="2">B — Faible</option>
+              <option value="3">C — Hétérogène</option>
+              <option value="4">D — Très dense</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="familyHistory">4. Antécédents familiaux</label>
+              <button type="button" class="info-tip" aria-label="Que signifie antécédents familiaux ?">
+                <svg class="info-tip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+                  <path d="M8 7.2v3.3M8 5v.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+                <span class="info-tip-bubble">
+                  Répondez "Oui" si un parent au premier degré (mère, sœur ou fille) a déjà eu un cancer du sein. Ce lien de parenté direct augmente statistiquement le niveau de risque estimé.
+                </span>
+              </button>
+            </div>
+            <select id="familyHistory">
+              <option value="">— Non disponible —</option>
+              <option value="0">Non</option>
+              <option value="1">Oui</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+        
+
+      
+
+        
+
+      <div class="card">
+        <p class="card-title">Imagerie</p>
+        <h2 class="card-heading">Mammographies</h2>
+        <p class="card-desc">Déposez ici vos mammographies de face et de profil, pour les deux seins.</p>
+        <p class="info-secondaire" style="margin-bottom:16px;">Le format DICOM n'est pas accepté. Privilégiez le PNG ou le JPEG.</p>
+        <div style="display:flex;flex-direction:column;gap:1px;">
+
+          <!-- CC droite -->
+          <div>
+            <div class="dropzone" id="dropzoneRCC">
+              <input type="file" id="fileInputRCC" accept="image/*" hidden />
+              <div class="dropzone-inner" id="dropzoneInnerRCC">
+                <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="dropzone-text">
+                  vue de face du sein droit (CC) <br />
+                  <span><button class="link-btn" id="browseBtnRCC">parcourir</button></span>
+                </p>
+              </div>
+              <img id="previewRCC" class="preview-img hidden" alt="R-CC" />
+              <div id="dicomPreviewRCC" class="dicom-badge hidden">DICOM chargé</div>
+            </div>
+          </div>
+
+          <!-- MLO droite -->
+          <div>
+            <div class="dropzone" id="dropzoneRMLO">
+              <input type="file" id="fileInputRMLO" accept="image/*" hidden />
+              <div class="dropzone-inner" id="dropzoneInnerRMLO">
+                <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="dropzone-text">
+                  vue obilque du sein droit (MLO)<br />
+                  <span><button class="link-btn" id="browseBtnRMLO">parcourir</button></span>
+                </p>
+              </div>
+              <img id="previewRMLO" class="preview-img hidden" alt="R-MLO" />
+              <div id="dicomPreviewRMLO" class="dicom-badge hidden">DICOM chargé</div>
+            </div>
+          </div>
+
+          <!-- CC gauche -->
+          <div>
+            <div class="dropzone" id="dropzoneLCC">
+              <input type="file" id="fileInputLCC" accept="image/*" hidden />
+              <div class="dropzone-inner" id="dropzoneInnerLCC">
+                <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="dropzone-text">
+                  vue de face du sein gauche (CC)<br />
+                  <span><button class="link-btn" id="browseBtnLCC">parcourir</button></span>
+                </p>
+              </div>
+              <img id="previewLCC" class="preview-img hidden" alt="L-CC" />
+              <div id="dicomPreviewLCC" class="dicom-badge hidden">DICOM chargé</div>
+            </div>
+          </div>
+
+          <!-- MLO gauche -->
+          <div>
+            <div class="dropzone" id="dropzoneLMLO">
+              <input type="file" id="fileInputLMLO" accept="image/*" hidden />
+              <div class="dropzone-inner" id="dropzoneInnerLMLO">
+                <svg class="dropzone-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M24 32V18M18 24l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p class="dropzone-text">
+                  vue oblique du sein gauche (CC)<br />
+                  <span><button class="link-btn" id="browseBtnLMLO">parcourir</button></span>
+                </p>
+              </div>
+              <img id="previewLMLO" class="preview-img hidden" alt="L-MLO" />
+              <div id="dicomPreviewLMLO" class="dicom-badge hidden">DICOM chargé</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fusion-indicators mt-8 no-print" id="fusionIndicators">
+      <div class="fusion-row">
+        <span class="fusion-dot inactive" id="dotClinical"></span>
+        <span class="fusion-label">Données cliniques</span>
+        <span class="fusion-status" id="statusClinical">Non renseignées</span>
+      </div>
+      <div class="fusion-row">
+        <span class="fusion-dot inactive" id="dotImage"></span>
+        <span class="fusion-label">Mammographies</span>
+        <span class="fusion-status" id="statusImage">Aucune image</span>
+      </div>
+    </div>
+
+    
+    <div class="card">
+      <p class="card-title">Résultat</p>
+      <h2 class="card-heading">Évaluation du risque</h2>
+      <p class="card-desc" style="max-width:100%;">
+        Une fois vos données déposées, notre IA combine vos mammographies 
+        et vos informations cliniques pour évaluer votre risque de cancer du sein à long terme.</p>
+
+      <div class="result-box" id="resultBox" style="margin-bottom:16px;">
+        <div class="result-idle" id="resultIdle">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 18v8M24 30v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <p>Renseignez au moins les 4 mammographies…</p>
+        </div>
+        <div class="result-loading hidden" id="resultLoading">
+          <div class="spinner"></div>
+          <p>Fusion des données en cours…</p>
+        </div>
+        <div class="result-output hidden" id="resultOutput">
+          <div class="result-score-row">
+            <div class="result-score" id="resultScore">—</div>
+            <div class="result-badge" id="resultBadge">—</div>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+          </div>
+          <p class="result-prob-label">Score de risque multimodal</p>
+          <div class="result-meta" style="grid-template-columns: repeat(2, max-content); justify-content: center; gap: 48px;">
+            <div class="meta-item">
+              <span class="meta-key">Sources</span>
+              <span class="meta-val" id="metaSources">—</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Durée</span>
+              <span class="meta-val" id="metaDuration">—</span>
+            </div>
+          </div>
+
+          <div class="timeline-section" id="timelineSection" style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border-light);">
+            <p class="result-prob-label" style="margin-bottom:12px;">Projection du risque cumulé sur 5 ans</p>
+            <div style="position:relative;height:180px;">
+              <canvas id="timelineChart"></canvas>
+            </div>
+            <table class="timeline-table" id="timelineTable" style="width:100%;margin-top:16px;border-collapse:collapse;font-size:0.85rem;">
+              <thead>
+                <tr style="border-bottom:1px solid var(--border-light);">
+                  <th style="text-align:left;padding:6px 4px;color:var(--text-secondary);font-weight:600;">Échéance</th>
+                  <th style="text-align:right;padding:6px 4px;color:var(--text-secondary);font-weight:600;">Risque cumulé</th>
+                </tr>
+              </thead>
+              <tbody id="timelineTableBody">
+              </tbody>
+            </table>
+          </div>
+
+          <p class="disclaimer">Prototype de recherche : ne constitue pas un diagnostic médical.</p>
+          <button type="button" class="btn-secondary no-print" id="printBtn" onclick="window.print()" style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;">
+            <span>Télécharger / Imprimer le résultat (PDF)</span>
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;">
+              <path d="M5 7V3h10v4M5 13h10v4H5v-4zM3 7h14v6H3V7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-primary no-print" id="analyzeBtn" disabled>
+        <span>Lancer la prédiction</span>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="btn-secondary hidden no-print" id="resetBtn">Réinitialiser</button>
+
+    </div>
+    <a href="consulter.html" id="ctaConsulter" class="cta-btn no-print" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;margin-top:20px;gap:4px;text-align:center;">
+      <span style="font-size:1rem;font-weight:700;">Prendre rendez-vous avec un médecin</span>
+      <span style="font-size:0.78rem;font-weight:400;opacity:0.85;">Quel que soit votre résultat, un avis médical reste essentiel. Trouvez un médecin juste ici !</span>
+    </a>
+
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+  <script src="prediction.js"></script>
+  <script>
+    let _prevTimer = null;
+
+    function startPrevention(duration) {
+      const overlay = document.getElementById('preventionOverlay');
+      const bar     = document.getElementById('prevBar');
+      const label   = document.getElementById('prevLabel');
+      overlay.classList.remove('hidden');
+      overlay.classList.remove('closing');
+      let progress = 0;
+      _prevTimer = setInterval(() => {
+        progress = Math.min(progress + (50 / duration) * 100, 100);
+        bar.style.width = progress.toFixed(1) + '%';
+        if (progress >= 100) {
+          clearInterval(_prevTimer);
+          label.textContent = 'Analyse terminée — fermeture automatique';
+          setTimeout(closePrevention, 600);
+        }
+      }, 50);
+    }
+
+    function closePrevention() {
+      clearInterval(_prevTimer);
+      const overlay = document.getElementById('preventionOverlay');
+      overlay.classList.add('closing');
+      overlay.addEventListener('animationend', () => {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('closing');
+        document.getElementById('prevBar').style.width = '0%';
+        document.getElementById('prevLabel').textContent = 'Analyse en cours… fermeture automatique';
+      }, { once: true });
+    }
+  </script>
+</body>
+</html>

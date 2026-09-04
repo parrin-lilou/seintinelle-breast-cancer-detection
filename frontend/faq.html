@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head> <!-- Afficher la page / titre sur tous les écrans et import des fichiers / mise en page -->
+  <meta charset="UTF-8" />  <!-- Pour afficher les accents et caractères spéciaux -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeinTinelle — FAQ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header"> <!-- Logo vers page d'accueil -->
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Seintinelle Logo" class="logo-img" style="height: 90px !important;">
+      <img src="nom.png" alt="description" style="height: 50px; margin-left: 12px;">
+    </a>
+
+    <nav class="nav"> <!-- Menu de navigation -->
+      <a href="index.html"      class="nav-link">Accueil</a>
+      <a href="detection.html"  class="nav-link">Détection</a>
+      <a href="prediction.html" class="nav-link">Prédiction</a>
+      <a href="consulter.html" class="nav-link">Consulter</a>
+      <a href="informees.html"  class="nav-link">Restez Informées</a>
+      <a href="apropos.html"  class="nav-link">À Propos de nous</a>
+      <a href="faq.html"  class="nav-link active">FAQ</a>
+
+    </nav>
+    <div class="octobre-rose-wrapper">
+      <img src="ruban.png" alt="Octobre Rose" class="octobre-rose-img">
+    </div>
+  </header>
+
+  <main class="page">
+
+    <div class="page-intro"> <!-- Introduction de la page -->
+      <span class="page-tag">Projet étudiants — E3 ESIEE 2025/2026</span>
+      <h1 class="page-title">Foire Aux Questions</h1>
+      <p class="page-desc" style="max-width:100%;">
+        Vous avez des questions sur SeinTinelle, son fonctionnement ou la
+        confidentialité de vos données ? Cliquez sur une question pour
+        afficher la réponse.
+      </p>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — À PROPOS DE L'OUTIL
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">À propos de l'outil</h2>
+        <p class="faq-category-desc">
+          Fonctionnement général, fiabilité et limites de SeinTinelle.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>SeinTinelle remplace-t-il un avis médical ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Non. SeinTinelle est un prototype de recherche réalisé dans un
+              cadre académique. Il ne constitue en aucun cas un diagnostic
+              médical et ne remplace pas l'avis d'un professionnel de santé.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Le résultat est-il fiable à 100% ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Non, aucun modèle d'IA n'est infaillible. Le score fourni est
+              une probabilité indicative, destinée à accompagner — et non
+              remplacer — le regard d'un radiologue ou d'un médecin.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que faire si mon résultat indique un risque élevé ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Consultez rapidement un médecin ou un radiologue. SeinTinelle
+              n'a pas vocation à poser de diagnostic, mais peut vous aider
+              à prendre conscience de l'importance d'un dépistage.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1B — MODULE DÉTECTION
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">Module Détection</h2>
+        <p class="faq-category-desc">
+          Analyse d'une mammographie ou d'une échographie mammaire.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment fonctionne la détection d'anomalie ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Un modèle CNN analyse votre mammographie ou votre échographie
+              mammaire pour repérer des zones suspectes et retourne une
+              probabilité de malignité.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Combien d'images dois-je fournir ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Pour une mammographie, la vue de face (CC) est obligatoire et
+              la vue oblique (MLO) est recommandée pour affiner l'analyse.
+              Pour une échographie, une seule image suffit.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quels formats d'image sont acceptés pour une mammographie ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Les formats DICOM (.dcm) et PNG sont recommandés pour une
+              analyse optimale. Le format JPEG est accepté mais peut
+              légèrement réduire la fiabilité des résultats.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quels formats d'image sont acceptés pour une échographie ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Le format DICOM n'est pas accepté pour ce module. Privilégiez
+              le PNG ou le JPEG.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1C — MODULE PRÉDICTION
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">Module Prédiction</h2>
+        <p class="faq-category-desc">
+          Évaluation multimodale de votre risque à long terme.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment fonctionne la prédiction multimodale ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Ce module combine vos données cliniques (âge, IMC, densité
+              mammaire, antécédents familiaux) avec 4 vues mammographiques
+              pour évaluer votre risque de cancer du sein à long terme,
+              jusqu'à 5 ans.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Combien de vues mammographiques sont nécessaires ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              4 vues sont nécessaires : la vue de face et la vue oblique,
+              pour chaque sein (RCC, RMLO, LCC, LMLO).
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quels formats d'image sont acceptés pour la prédiction ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Le format DICOM n'est pas accepté pour ce module. Privilégiez
+              le PNG ou le JPEG.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Que signifient les niveaux de risque affichés (faible / modéré / élevé) ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Le score combiné est classé en 3 niveaux : risque faible
+              (moins de 10%), risque modéré (entre 10% et 35%) et risque
+              élevé (35% et plus).
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — DONNÉES & CONFIDENTIALITÉ
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">Données &amp; confidentialité</h2>
+        <p class="faq-category-desc">
+          Ce que nous faisons et ne faisons pas de vos informations.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Mes données sont-elles stockées ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Dans le cadre de ce prototype, aucune donnée personnelle ou
+              médicale n'est conservée de manière permanente. Les fichiers
+              importés ne sont utilisés que pour l'analyse en cours.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Mes images sont-elles partagées ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Non, vos images et informations ne sont ni partagées ni
+              transmises à des tiers. Elles servent uniquement à générer
+              votre résultat d'analyse.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Sur quelles données le modèle a-t-il été entraîné ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Nos modèles s'appuient sur des jeux de données publics et
+              reconnus (notamment MedMNIST / BreastMNIST), utilisés dans
+              un cadre strictement académique et de recherche.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — LE PROJET
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">Le projet</h2>
+        <p class="faq-category-desc">
+          L'équipe, le cadre académique et ce qui pourrait suivre.
+        </p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Qui a développé SeinTinelle ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              SeinTinelle est un projet réalisé par une équipe d'étudiants
+              en E3E à ESIEE Paris, dans le cadre du Jour des Projets.
+              Retrouvez toute l'équipe sur la page "À propos de nous".
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Le projet est-il amené à évoluer ?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              SeinTinelle est avant tout un prototype de recherche réalisé
+              dans un cadre étudiant. Il pourrait évoluer à l'avenir, mais
+              n'a pas vocation commerciale à ce stade.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 — CONTACT
+         ══════════════════════════════════════════ -->
+
+    <div class="faq-section">
+      <div class="faq-section-header">
+        <h2 class="faq-category-title">Une question n'a pas trouvé de réponse ?</h2>
+        <p class="faq-category-desc">
+          Posez-nous directement votre question ci-dessous, nous vous
+          répondrons dans les meilleurs délais.
+        </p>
+      </div>
+
+      <form class="faq-contact-form">
+        <div class="faq-form-group">
+          <label for="faq-contact-subject">Objet</label>
+          <input type="text" id="faq-contact-subject" name="subject"
+                 placeholder="Votre question en quelques mots" required>
+        </div>
+        <div class="faq-form-group">
+          <label for="faq-contact-message">Message</label>
+          <textarea id="faq-contact-message" name="message" rows="4"
+                    placeholder="Détaillez votre question ici..." required></textarea>
+        </div>
+        <button type="submit" class="faq-form-submit">Envoyer</button>
+      </form>
+    </div>
+
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SeinTinelle" class="footer-logo">
+        <span>SeinTinelle</span>
+      </div>
+      <p class="footer-disclaimer">
+        Prototype de recherche réalisé par des étudiants ESIEE Paris (E3E, 2025/2026).
+        Ne constitue pas un dispositif médical ni un diagnostic.
+      </p>
+      <nav class="footer-links">
+        <a href="apropos.html">À propos de nous</a>
+        <a href="faq.html">FAQ &amp; Contact</a>
+        <a href="#" target="_blank" rel="noopener">Rapport du projet</a>
+      </nav>
+      <p class="footer-copy">© 2026 SeinTinelle — Jour des Projets, ESIEE Paris</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        if (isOpen) {
+          answer.style.maxHeight = '0px';
+          item.classList.remove('open');
+          question.setAttribute('aria-expanded', 'false');
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          item.classList.add('open');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+// Formulaire de contact -> ouvre le client mail avec objet + message pré-remplis
+document.querySelectorAll('.faq-contact-form').forEach((form) => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const subject = form.querySelector('[name="subject"]').value;
+    const message = form.querySelector('[name="message"]').value;
+    const destinataires = [
+      'lilou.parrin@edu.esiee.fr',
+      'nathan.gautier@edu.esiee.fr',
+      'maxime.lenfant@edu.esiee.fr',
+      'rayan.oulboub@edu.esiee.fr',
+      'antoine.navarro@edu.esiee.fr',
+      'ayoub.mernissi@edu.esiee.fr'
+    ].join(',');
+    const mailto = `mailto:${destinataires}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    window.location.href = mailto;
+  });
+});
+  </script>
+
+</body>
+</html>
