@@ -48,3 +48,54 @@ A late-fusion pipeline combining imaging and clinical risk factors:
 - License: MIT (see `Mirai/LICENSE`)
 
 ## Project Structure
+seintinelle-breast-cancer-detection/
+├── app.py                              # Flask backend (routes, chargement des 3 modèles)
+├── breast_cancer_densenet121_final.keras
+├── requirements.txt
+├── .gitignore
+├── Mirai/                              # AsymMirai — tiers, licence MIT (Donnelly et al.)
+│   ├── snapshots/                      # Poids du modèle entraîné (.pt)
+│   ├── onconet/                        # Code source du modèle Mirai original
+│   ├── asymmetry_model/                # Code spécifique AsymMirai
+│   ├── LICENSE
+│   ├── README.md
+│   ├── README_mirai.md
+│   ├── requirements.txt
+│   ├── get_asymmetries.py
+│   ├── example_data_format.csv
+│   └── pyproject.toml
+└── frontend/
+    ├── index.html                      # Page d'accueil
+    ├── detection.html / detection.js   # Module détection (mammographie + échographie)
+    ├── prediction.html / prediction.js # Module prédiction (AsymMirai + clinique)
+    ├── consulter.html / consulter.js   # Recherche de praticiens (géoloc)
+    ├── test_coherence.html / .js       # Outil interne de test du modèle
+    ├── informees.html
+    ├── faq.html
+    ├── apropos.html
+    ├── style.css
+    └── logo.png / nom.png / ruban.png
+    
+## Setup & Run
+```bash
+pip install -r requirements.txt
+python app.py
+```
+Then open `frontend/index.html` in your browser.
+
+## Team
+- Lilou Parrin — Data Science & AI
+- Nathan Gautier — Data Science & AI
+- Maxime Lenfant — Artificial Intelligence and Cybersecurity
+- Ayoub Mernissi — Artificial Intelligence and Cybersecurity
+- Rayan Oulboub — Artificial Intelligence and Cybersecurity
+- Antoine Navarro — Informatique
+
+## Acknowledgments
+Thanks to Mme Imen Kachouri for her guidance and supervision throughout this project.
+
+## References
+- Yala et al., *Mirai* — MIT, Mass General Hospital (2021)
+- Donnelly et al., *AsymMirai* — Duke University (2023), MIT License
+- Pan, *mammo-crop* & *mammoscreen* — Apache 2.0 License
+- Yang et al. (2023), *MedMNIST v2* — Scientific Data
