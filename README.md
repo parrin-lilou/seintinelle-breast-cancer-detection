@@ -48,6 +48,7 @@ A late-fusion pipeline combining imaging and clinical risk factors:
 - License: MIT (see `Mirai/LICENSE`)
 
 ## Project Structure
+```
 seintinelle-breast-cancer-detection/
 ├── app.py                              # Flask backend (routes, chargement des 3 modèles)
 ├── breast_cancer_densenet121_final.keras
@@ -75,6 +76,7 @@ seintinelle-breast-cancer-detection/
     ├── apropos.html
     ├── style.css
     └── logo.png / nom.png / ruban.png
+```
     
 ## Setup & Run
 ```bash
