@@ -1,4 +1,4 @@
-# SeinTinelle — Détection & Prédiction du Cancer du Sein par IA
+# SeinTinelle — Détection & Prédiction du Cancer du Sein par IA (Présenté au Jour des Projets, ESIEE Paris)
 
 ## Overview
 SeinTinelle is a web application combining **three AI models** across two complementary modules to assist in breast cancer detection and risk assessment:
